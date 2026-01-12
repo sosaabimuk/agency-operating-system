@@ -1,0 +1,483 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================
+   NODEWERK OS - COCKPIT DESIGN SYSTEM
+   Raum. Fokus. Command-Driven.
+   ============================================ */
+
+:root {
+  /* Background - Ein RAUM, nicht nur schwarz */
+  --background: #000000;
+  --background-deep: #020204;
+  --background-elevated: #0a0a0c;
+
+  /* Text - DRAMATISCHE Hierarchie */
+  --foreground: #fafafa;
+  --foreground-secondary: #a1a1a1;
+  --foreground-muted: #525252;
+  --foreground-faint: #3a3a3a;
+
+  /* Borders - Minimal, nur wo nötig */
+  --border: rgba(255, 255, 255, 0.05);
+  --border-prominent: rgba(255, 255, 255, 0.08);
+  --border-glass: rgba(255, 255, 255, 0.03);
+
+  /* Accent - Licht, nicht Farbe */
+  --accent: #ff4f00;
+  --accent-glow: rgba(255, 79, 0, 0.15);
+  --accent-glow-strong: rgba(255, 79, 0, 0.25);
+  --accent-foreground: #ffffff;
+
+  /* Status - Durch Glow, nicht durch Badges */
+  --status-active: #10b981;
+  --status-active-glow: rgba(16, 185, 129, 0.2);
+  --status-lead: #3b82f6;
+  --status-lead-glow: rgba(59, 130, 246, 0.2);
+  --status-proposal: #f59e0b;
+  --status-proposal-glow: rgba(245, 158, 11, 0.2);
+  --status-inactive: #525252;
+
+  /* Component Colors */
+  --card: rgba(8, 8, 10, 0.8);
+  --card-foreground: #fafafa;
+  --popover: rgba(10, 10, 12, 0.95);
+  --popover-foreground: #fafafa;
+  --primary: #ff4f00;
+  --primary-foreground: #ffffff;
+  --secondary: #141416;
+  --secondary-foreground: #fafafa;
+  --muted: #18181b;
+  --muted-foreground: #525252;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --input: rgba(255, 255, 255, 0.03);
+  --ring: #ff4f00;
+
+  /* Radius */
+  --radius: 1rem;
+
+  /* Sidebar - Ultra minimal */
+  --sidebar-width: 56px;
+
+  /* Charts */
+  --chart-1: #ff4f00;
+  --chart-2: #10b981;
+  --chart-3: #3b82f6;
+  --chart-4: #f59e0b;
+  --chart-5: #8b5cf6;
+}
+
+@theme inline {
+  --font-sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Geist Mono", monospace;
+
+  --color-background: var(--background);
+  --color-background-deep: var(--background-deep);
+  --color-background-elevated: var(--background-elevated);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-faint: var(--foreground-faint);
+  --color-border: var(--border);
+  --color-border-prominent: var(--border-prominent);
+  --color-border-glass: var(--border-glass);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-glow-strong: var(--accent-glow-strong);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-sidebar: transparent;
+  --color-sidebar-foreground: var(--foreground-muted);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--primary-foreground);
+  --color-sidebar-accent: var(--accent);
+  --color-sidebar-accent-foreground: var(--accent-foreground);
+  --color-sidebar-border: var(--border-glass);
+  --color-sidebar-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY - DRAMATISCH
+   Page Titles: klein, uppercase, weit gesperrt
+   Content Names: RIESIG, fett, eng
+   ============================================ */
+
+/* Page Label - winzig, uppercase, transparent */
+.page-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--foreground-muted);
+}
+
+/* Hero Name - riesig, fett */
+.hero-name {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--foreground);
+}
+
+/* Big Number - für Geldbeträge */
+.big-number {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Section Title */
+.section-title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--foreground-faint);
+}
+
+/* Micro Text - Timestamps etc */
+.micro-text {
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  color: var(--foreground-faint);
+}
+
+/* ============================================
+   GLASSMORPHISM - RICHTIG
+   Dunkles transparentes Grau, 40px blur
+   ============================================ */
+
+.glass-panel {
+  background: rgba(8, 8, 12, 0.85);
+  backdrop-filter: blur(40px) saturate(150%);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius);
+}
+
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.glass-card {
+  position: relative;
+  background: rgba(10, 10, 14, 0.7);
+  backdrop-filter: blur(40px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Top Highlight Line */
+.glass-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+}
+
+/* ============================================
+   STATUS GLOW SYSTEM
+   Keine Badges - Glow hinter Elementen
+   ============================================ */
+
+.status-glow-active {
+  box-shadow: 0 0 30px var(--status-active-glow), 0 0 60px var(--status-active-glow);
+}
+
+.status-glow-lead {
+  box-shadow: 0 0 30px var(--status-lead-glow), 0 0 60px var(--status-lead-glow);
+}
+
+.status-glow-proposal {
+  box-shadow: 0 0 30px var(--status-proposal-glow), 0 0 60px var(--status-proposal-glow);
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Avatar Glow Ring */
+.avatar-glow {
+  position: relative;
+}
+
+.avatar-glow::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.3;
+  filter: blur(8px);
+}
+
+/* ============================================
+   CARD STACK EFFECT
+   Cards gestapelt wie Kartendeck
+   ============================================ */
+
+.card-stack {
+  position: relative;
+  perspective: 1000px;
+}
+
+.card-stack-item {
+  position: absolute;
+  width: 100%;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center bottom;
+}
+
+.card-stack-item:nth-child(1) {
+  z-index: 30;
+  transform: translateY(0) scale(1);
+}
+
+.card-stack-item:nth-child(2) {
+  z-index: 20;
+  transform: translateY(8px) scale(0.96);
+  opacity: 0.7;
+  filter: blur(1px);
+}
+
+.card-stack-item:nth-child(3) {
+  z-index: 10;
+  transform: translateY(16px) scale(0.92);
+  opacity: 0.4;
+  filter: blur(2px);
+}
+
+/* ============================================
+   PORTAL BLOCKS
+   Entry Points zu Bereichen
+   ============================================ */
+
+.portal-block {
+  position: relative;
+  background: rgba(8, 8, 12, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.portal-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(255, 79, 0, 0.03) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.portal-block:hover {
+  border-color: var(--border-prominent);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.5), 0 0 40px -10px var(--accent-glow);
+}
+
+.portal-block:hover::before {
+  opacity: 1;
+}
+
+/* ============================================
+   FOCUS INDICATOR
+   Sanftes Pulsieren für wichtige Elemente
+   ============================================ */
+
+.focus-pulse {
+  animation: focus-pulse 2s ease-in-out infinite;
+}
+
+@keyframes focus-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+
+/* ============================================
+   COMMAND HINT
+   Dezenter Hinweis für Keyboard Shortcuts
+   ============================================ */
+
+.cmd-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: 6px;
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  color: var(--foreground-faint);
+}
+
+/* ============================================
+   AMBIENT ORB ANIMATIONS
+   Langsame, subtile Bewegung
+   ============================================ */
+
+@keyframes orb-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 15px) scale(0.95);
+  }
+}
+
+.ambient-orb {
+  animation: orb-drift 40s ease-in-out infinite;
+}
+
+.ambient-orb-delayed {
+  animation: orb-drift 50s ease-in-out infinite;
+  animation-delay: -15s;
+}
+
+/* ============================================
+   SCROLLBAR - Minimal
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   NUMBER ANIMATION
+   Zahlen zählen hoch
+   ============================================ */
+
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-count {
+  animation: count-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+
+::selection {
+  background: rgba(255, 79, 0, 0.3);
+  color: var(--foreground);
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   DIVIDERS
+   ============================================ */
+
+.divider-subtle {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-prominent), transparent);
+}
+
+/* ============================================
+   HOVER LIFT EFFECT
+   ============================================ */
+
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+}
